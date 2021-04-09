@@ -8,19 +8,19 @@ class Connexion extends Component {
     }
 
     handleChange = (e) => {
-        const pseudo = e.target.value;
+        const pseudo = e.target.value
         this.setState({pseudo})
-    };
+    }
 
     handleSubmit = (e) => {
-        e.preventDefault(),
+        e.preventDefault()
         this.setState({goToChat: true})
     }
 
     render () {
 
         if (this.state.goToChat) {
-            return <Redirect to={`/pseudo/${this.state.pseudo}`}></Redirect>
+            return <Redirect push to={`/pseudo/${this.state.pseudo}`} />
         }
         return (
             <div className="connexionBox">
