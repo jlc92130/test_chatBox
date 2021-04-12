@@ -29,9 +29,9 @@ class Formulaire extends Component {
         const length = (this.props.length - message.length)    
         this.setState({message,length})
     }
-    handleKeyUp = (e) {
+    handleKeyUp = (event) => {
         if (event.key === 'Enter') {
-           this.createMessage 
+           this.createMessage() 
         }
     }
 
