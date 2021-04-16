@@ -112,7 +112,7 @@ body {
 	content: '';
 	position: absolute;
 	top: -7px;
-	left: 10px;
+	left: 15px;
 	width: 0;
 	border-width: 0 10px 7px 0;
 	border-style: solid;

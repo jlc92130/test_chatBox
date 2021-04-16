@@ -9,11 +9,11 @@ import base from './base'
 class App extends Component {
   state = {
     messages: {}, 
-    pseudo: this.props.match.params.pseudo
+    pseudo: this.props.match.params.pseudo // pseudo is a parameter from the url
   }
 
-  //creation of a reference to work on elevator which is part of the dom
-  messagesRef = CreateRef()
+  //creation of a reference to work on the scroll. We don't work directly on the dom
+  messagesRef = createRef()
 
   componentDidMount () {
     base.syncState('/', {
@@ -30,9 +30,18 @@ class App extends Component {
 
   addMessage = message => {   //message is an object made of pseudo and messages
     const messages = { ...this.state.messages } // copy messages in the state
-    messages[`message-${Date.now()}`] = message
+    messages[`message-${Date.now()}`] = message 
+    // Object transfom the object in a tab
+    Object  
+      .keys(messages)
+      .slice(0, -10) //we keep the last 10 messages
+      .forEach( key => {
+        messages[key] = null
+      })
     this.setState({ messages })  //add message in the dictionary
   } 
+
+  isUser = pseudo => pseudo === this.state.pseudo
 
   render () {
     const messages = Object
@@ -40,6 +49,7 @@ class App extends Component {
       .map(key => (
         <Message
           key={key}
+          isUser = {this.isUser}
           message={this.state.messages[key].message}
           pseudo={this.state.messages[key].pseudo}
         />
